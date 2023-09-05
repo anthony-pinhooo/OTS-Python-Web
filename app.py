@@ -1,11 +1,23 @@
-from flask import Flask 
+from flask import Flask, render_template
 
 app = Flask("meu app")
 
-@app.route('/')
-def hello():
-    return "Hello, world!"
+#Mock para Teste
+posts = [
+    {
+        "titulo": "Minha primeira postagem",
+        "texto": "Era uma casa muito engraça, não tinha teto, não tinha nada"
+    },
+    {
+        "titulo": "Segundo Post",
+        "texto": "Vai Neymar, tu gosta de bater né, tu é cachorro"
+    }
+]
 
-@app.route('/testando')
-def htmlTxT():
-    return "<h1>Testando</h1>"
+
+
+@app.route("/")
+def exibir_entradas():
+    entradas = posts
+    #importando o template html
+    return render_template('exibir_entradas.html', entradas=entradas)
